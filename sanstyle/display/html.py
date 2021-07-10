@@ -1,68 +1,38 @@
 from string import Template
+from urllib.parse import urlencode
 
 element_template = Template(
-    '''<${tag} class="${className}" type="${typeName}" ${params}>${content}</${tag}>''')
-null_element_template = Template(
-    '''<${tag} class="${className}" type="${typeName}" ${params}>''')
+    '''<${tag} class="${className}" type="${typeName}" ${config}">${content}</${tag}>''')
+frame_template = Template(
+    '''<${tag} class="${className}" type="${typeName}" src="${src}${params}" ${config}>''')
 
 
-class FrameElement:
-    def __init__(self, tag, src, height,
-                 width='100%',
-                 typeName='text/html',
-                 className='w3-card',
-                 **kwargs):
-        self.tag = tag
+class Embed:
+    """
+    Generic class to embed an embed in an IPython notebook
+    """
+    _embed = """<embed type="{typeName}" class="{className}" width="{width}" height="{height}" src="{src}{params}">"""
+
+    def __init__(self, src, height, width='100%', className='w3-card w3-pale-blue', typeName='text/html', **kwargs):
         self.typeName = typeName
+        self.className = className
         self.src = src
         self.width = width
         self.height = height
         self.params = kwargs
-        self.className = className
 
     def _repr_html_(self):
         """return the embed iframe"""
         if self.params:
-            try:
-                from urllib.parse import urlencode  # Py 3
-            except ImportError:
-                from urllib import urlencode
             params = "?" + urlencode(self.params)
         else:
             params = ""
         config = {
-            'tag': self.tag,
             'typeName': self.typeName,
             'src': self.src,
+            'className': self.className,
             'width': self.width,
             'height': self.height,
-            'params': params,
-            'className': self.className
+            'params': params
         }
-        return null_element_template.substitute(config)
-
-
-def IFrame(src, height,
-           width='100%',
-           typeName='text/html',
-           className='w3-card',
-           **kwargs):
-    '''<iframe>'''
-    return FrameElement('iframe', src, height,
-                        width,
-                        typeName,
-                        className,
-                        **kwargs)
-
-
-def Embed(src, height,
-          width='100%',
-          typeName='text/html',
-          className='w3-card',
-          **kwargs):
-    '''<embed>'''
-    return FrameElement('embed', src, height,
-                        width,
-                        typeName,
-                        className,
-                        **kwargs)
+        return self._embed.format(**config)
