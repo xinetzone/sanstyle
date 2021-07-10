@@ -5,7 +5,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setuptools.setup(
     name="sanstyle", 
-    version="0.0.1",
+    version="0.1",
     author="xinetzone",
     author_email="xinzone@outlook.com",
     description="Dash App",
