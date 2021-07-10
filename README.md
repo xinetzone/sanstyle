@@ -4,4 +4,4 @@
 
 上善若水
 
-Published by [Sanstyle · PyPI](https://pypi.org/project/sanstyle/). more for [xinetzone/governance](https://github.com/xinetzone/governance).
+被发布到 [Sanstyle · PyPI](https://pypi.org/project/sanstyle/)。 更多内容见 [xinetzone/governance](https://github.com/xinetzone/governance)。
