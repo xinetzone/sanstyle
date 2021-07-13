@@ -5,3 +5,6 @@
 上善若水
 
 被发布到 [Sanstyle · PyPI](https://pypi.org/project/sanstyle/)。 更多内容见 [xinetzone/governance](https://github.com/xinetzone/governance)。
+
+- `sanstyle.html` 用于处理 HTML
+- `sanstyle.github` 用于处理 GitHub
