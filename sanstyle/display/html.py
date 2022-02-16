@@ -23,10 +23,7 @@ class Embed:
 
     def _repr_html_(self):
         """return the embed iframe"""
-        if self.params:
-            params = "?" + urlencode(self.params)
-        else:
-            params = ""
+        params = f'?{urlencode(self.params)}' if self.params else ""
         config = {
             'typeName': self.typeName,
             'src': self.src,

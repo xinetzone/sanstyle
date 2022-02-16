@@ -7,5 +7,4 @@ def lfs_url(repo, filename, branch='main'):
     filename: 'gapminderDataFiveYear.csv'
     '''
     root = 'https://media.githubusercontent.com/media'
-    url = f'{root}/{repo}/{branch}/{filename}'
-    return url
+    return f'{root}/{repo}/{branch}/{filename}'
